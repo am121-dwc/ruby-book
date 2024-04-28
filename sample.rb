@@ -58,8 +58,8 @@
 # puts text.scan(/filename=[^;]+/).map { |s| s.split('=').last }
 
 
-text = <<-TEXT
-John:guitar, George:guitar, Paul:bass, Ringo:drum
-Freddie:vocal, Brian:guitar, John:bass, Roger:drum
-TEXT
-puts text.scan(/\w+(?=:bass)/)
+# text = <<-TEXT
+# John:guitar, George:guitar, Paul:bass, Ringo:drum
+# Freddie:vocal, Brian:guitar, John:bass, Roger:drum
+# TEXT
+# puts text.scan(/\w+(?=:bass)/)
