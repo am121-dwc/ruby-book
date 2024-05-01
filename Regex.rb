@@ -89,7 +89,82 @@
 # p text
 
 # iを使うと大文字小文字を区別しない
-'HELLO' =~ /hello/i
+# 'HELLO' =~ /hello/i
 
 # %rでもオプションをつけられる
-'HELLO' =~ %r{hello}i
+# 'HELLO' =~ %r{hello}i
+
+# mオプションがないと.は改行文字に含まれない
+# p "Hello\nBye" =~ /Hello.Bye/ # nil
+
+# mオプションがあると.が改行文字にマッチする
+# p "Hello\nBye" =~ /Hello.Bye/m # 0
+
+# regexp = Regexp.new('Hello.Bye', Regexp::MULTILINE)
+# p "Hello\nBye" =~ regexp
+
+# xオプションをつけると改行とスペースは無視され、コメントを書くことができる。
+# regexp = /
+# \d{3} #数字3文字
+# -
+# \d{4} #数字4文字
+# /x
+# p '123-4567' =~ regexp
+
+# regexp = /
+# \d{3}
+# \ #←xオプションを用いている時に半角スペース等を含めたい場合エスケープして記述する。
+# \d{4}
+# /x
+# p '123 4567' =~ regexp
+
+# pattern = <<'TEXT'
+# \d{3} #最初の3桁
+# -     #区切りのハイフン
+# \d{4} #最後の4桁
+# TEXT
+# regexp = Regexp.new(pattern, Regexp::EXTENDED)
+# p "123-4567" =~ regexp
+
+# iオプションとmオプションを同時に使う
+# p "Hello\nBye" =~ /Hello.Bye/im
+
+# regexp = Regexp.new('Hello.Bye', Regexp::IGNORECASE | Regexp::MULTILINE)
+# p "Hello\nBYE" =~ regexp
+
+# text = "私の誕生日は1977年7月17日です。"
+# =~やmatchメソッドを用いるとマッチした結果が組み込み変数に代入される。
+# p text =~ /(\d+)年(\d+)月(\d+)日/
+# MatchDataオブジェクトを取得する
+# p $&
+
+# p $1 #一番目のキャプチャ
+# p $2 #二番目のキャプチャ
+# p $3 #三番目のキャプチャ
+
+# 最後のキャプチャを表示
+# p $+
+
+# text = "私の誕生日は1977年7月17日です。"
+# # =~演算子を用いるとマッチした結果をRegexp.last_matchで取得できる
+# text =~ /(\d+)年(\d+)月(\d+)日/
+# # MatchDataオブジェクトを取得する。
+# p Regexp.last_match
+# # マッチした部分全体を取得する。
+# p Regexp.last_match(0)
+# # 一番目から三番目のキャプチャを取得する。
+# p Regexp.last_match(1)
+# p Regexp.last_match(2)
+# p Regexp.last_match(3)
+# # 最後のキャプチャ文字を取得
+# p Regexp.last_match(-1)
+# # 最後から二番目を取得
+# p Regexp.last_match(-2)
+
+# マッチすればtrue
+p /\d{3}-\d{4}/.match?('123-4567')
+# マッチしても組み込み変数やRegexp.last_matchを書き換えない。
+p $~
+p Regexp.last_match
+# 文字列と正規表現を入れ替えてもok
+p '123-4567'.match?(/\d{3}-\d{4}/)
