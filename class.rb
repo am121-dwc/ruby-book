@@ -87,20 +87,81 @@
 # product = Product.new('A free movie')
 # p product.price
 
-class Product
-  DEFAULT_PRICE = 0
-  def self.default_price
-    # クラスメソッドから定数を参照する
-    DEFAULT_PRICE
-  end
+# class Product
+#   DEFAULT_PRICE = 0
+#   def self.default_price
+#     # クラスメソッドから定数を参照する
+#     DEFAULT_PRICE
+#   end
   
-  def default_price
-    # インスタンスメソッドから定数を参照する
-    DEFAULT_PRICE
-  end
-end
-Product.default_price
+#   def default_price
+#     # インスタンスメソッドから定数を参照する
+#     DEFAULT_PRICE
+#   end
+# end
+# Product.default_price
 
-product = Product.new
-p product.default_price
+# product = Product.new
+# p product.default_price
+# class User
+# end
+# user = User.new
+# p user.methods.sort
+# p user.class
+# userクラスはUserクラスのインスタンスか？
+# p user.instance_of?(User)
+# userクラスはstringクラスのインスタンスか？
+# p user.instance_of?(String)
+# instance_of?はクラスが完全に一緒じゃないとtrueにならない。
+# p user.instance_of?(Object)
+
+# is_a?はis-a関係にあればtrueになる。
+# p user.is_a?(User)
+# p user.is_a?(Object)
+# p user.is_a?(BasicObject)
+
+# is-a関係に無い場合はfalse
+# p user.is_a?(String)
+
+# class Product
+#   attr_reader :name, :price
+
+#   def initialize(name, price)
+#     @name = name
+#     @price = price
+#   end
+#   def to_s
+#     "name: #{name}, price: #{price}"
+#   end
+# end
+# product = Product.new('A great movie', 1000)
+# # p product.name
+# # p product.price
+
+# # DVDクラスはProductクラスを継承する。
+# class DVD < Product
+#   attr_reader :running_time
+#   def initialize(name, price, running_time)
+#     # super(親)クラスのinitializeメソッドを呼び出す(引数の数が同じならsuperのみで呼び出せる)
+#     super(name, price)
+#     # DVDクラス独自の属性
+#     @running_time = running_time
+#   end
+# end
+# dvd = DVD.new('A awesome movie', 1000, 120)
+# # p dvd.name
+# # p dvd.price
+# # p dvd.running_time
+# p dvd.to_s
+# p dvd.running_time
+
+# class Product
+#   DEFAULT_PRICE = 0
+  
+#   # 定数をprivateにする
+#   # private_constant :DEFAULT_PRICE
+# end
+# p Product::DEFAULT_PRICE
+# Product.freeze
+# p Product::DEFAULT_PRICE = 5000
 
