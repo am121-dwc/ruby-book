@@ -300,3 +300,16 @@
 # users['alice']['gender'] = :female
 # # ハッシュからYAMLテキストに変換する
 # puts YAML.dump(users)
+# --------------------------------------
+# 文字列としてRubyのコードを実行する
+# code = '[1, 2, 3].map { |n| n * 10 }'
+# p eval(code)
+
+# str = 'a,b,c'
+
+# str.upcaseを呼ぶのと同じ
+# p str.send('upcase')
+
+# str.split(',')を呼ぶのと同じ
+# p str.send('split',',')
+# --------------------------
